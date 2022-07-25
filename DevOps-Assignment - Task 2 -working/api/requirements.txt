@@ -1,0 +1,5 @@
+Flask==1.1.4
+psutil==5.9.1
+Flask-Cors==3.0.10
+gunicorn
+cors==1.0.1

@@ -1,0 +1,38 @@
+#### Flask app ####
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: flask-app
+
+spec:
+  selector:
+    matchLabels:
+      app: flask-app
+  replicas: 1 # tells deployment to run 1 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: flask-app
+    spec:
+      containers:
+      - name: flask-application
+        image: venkat180/devops-assignment_app-server:latest
+        ports:
+        - containerPort: 5000
+
+---
+# https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service
+kind: Service
+apiVersion: v1
+metadata:
+  name: svc-flask-app
+
+spec:
+  selector:
+    app: flask-app
+  ports:
+  - protocol: TCP
+    port: 5000
+    targetPort: 5000
+  type: ClusterIP

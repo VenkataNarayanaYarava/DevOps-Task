@@ -1,0 +1,38 @@
+#### Flask frontend app ####
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: flask-frontend-app
+
+spec:
+  selector:
+    matchLabels:
+      app: flask-frontend-app
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: flask-frontend-app
+    spec:
+      containers:
+      - name: flask-frontend-application
+        image: venkat180/devops-assignment_frontend:latest
+        ports:
+        - containerPort: 3000
+
+---
+# https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service
+kind: Service
+apiVersion: v1
+metadata:
+  name: svc-flask-frontend-app
+
+spec:
+  selector:
+    app: flask-frontend-app
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: LoadBalancer 

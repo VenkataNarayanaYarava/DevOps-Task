@@ -1,0 +1,49 @@
+version: '3.7'
+
+services:
+    nginx:
+        image: nginx:1.15
+        container_name: nginx
+        volumes:
+            - ./:/var/www
+            - ./nginx-task.conf:/etc/nginx/conf.d/default.conf
+        ports:
+            - 80:80
+        networks:
+            - my-network
+        depends_on:
+            - app-server
+            - frontend
+    frontend:
+        build:
+            context: .
+            dockerfile: sys-stats/Dockerfile
+        container_name: frontend
+        volumes:
+            - ./sys-stats:/app
+            - /app/node_modules
+        networks:
+            my-network:
+                aliases:
+                    - frontend
+        stdin_open: true
+        ports:
+            - "3000:3000"
+    app-server:
+        build:
+            context: .
+            dockerfile: api/Dockerfile
+        container_name: app-server
+        command: gunicorn --bind 0.0.0.0:5000 --workers 4 --pythonpath /app "app:app"
+        volumes:
+            - ./api:/app
+        networks:
+            my-network:
+                aliases:
+                    - app-server
+        expose:
+            - 5000
+        ports:
+            - "5000:5000"
+networks:
+    my-network:
