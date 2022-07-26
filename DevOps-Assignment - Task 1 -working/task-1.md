@@ -36,7 +36,7 @@ Step 1: Drafted the Dockerfile to build the Docker Image to make it containarize
 > CMD ["python", "app.py"]
 ---
 
-Step 2:
+**Step 2:**
 After drafting was checking the requirements.txt and app.py files. Found that dependency details were missed. So added the python modules and respective dependencies in requirements.txt file. 
 #### requirements.txt
 ---
@@ -49,7 +49,7 @@ After drafting was checking the requirements.txt and app.py files. Found that de
 > gunicorn
 ---
 
-Step 3:
+**Step 3:**
 
 Building the docker image api/Dockerfile
 
@@ -57,7 +57,8 @@ Building the docker image api/Dockerfile
 
 **Sys-statsFolder**
 
-Step 4:
+**Step 4:**
+
 Drafted the Dockerfile to build the Docker Image to make it containarize, sys-stats/Dockerfile
 ---
 > FROM node:13.12.0-alpine
@@ -77,7 +78,7 @@ Drafted the Dockerfile to build the Docker Image to make it containarize, sys-st
 > CMD ["npm", "start"]
 ---
 
-Step 5:
+**Step 5:**
 
 Building the docker image sys-stats/Dockerfile
 
@@ -89,19 +90,19 @@ As part of multi container deployment we are going to use this in docker-compose
   - we need to develop the docker compose file to create the two containers at a time. 
   - along with two apps we need to create one nginx container for proxiying the frontend application and to access it.
 
-Step 6:
+**Step 6:**
 
 Creating compose file for Frontend , Backend and nginx with all dependency configuration.
 
 **docker-compose.yml in root directory**
 
 
-Step 7:
+**Step 7:**
 
 To build the images and containers use the below command 
 
 `docker-compose up --build -d`
 
-**Step 8** 
+**Step 8:** 
 
 On successfull build our application should run on http://localhost from browser

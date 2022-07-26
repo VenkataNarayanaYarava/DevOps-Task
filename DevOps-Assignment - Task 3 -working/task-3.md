@@ -26,11 +26,11 @@ As stated using the minikube to host the application.
 
 Installed Minikube in local machine(windows)
 
-https://storage.googleapis.com/minikube/releases/latest/minikube-installer.exe 
+`https://storage.googleapis.com/minikube/releases/latest/minikube-installer.exe` 
 
 **Step2:** 
 
-Start the Minikube   # minikube start
+Start the Minikube   # `minikube start`
 
 image.png
 
@@ -47,7 +47,7 @@ Backend application manifest file
 --- 
 #### Flask app ####
 ---
-apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+`apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
   name: flask-app
@@ -82,7 +82,7 @@ spec:
   - protocol: TCP
     port: 5000
     targetPort: 5000
-  type: ClusterIP
+  type: ClusterIP`
 ---
 
 **Step 4**

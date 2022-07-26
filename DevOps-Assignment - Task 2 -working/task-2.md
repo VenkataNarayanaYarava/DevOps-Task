@@ -29,44 +29,41 @@ As a per the task, I am selecting the AWS for hosting the application.
 
 **Docker installation:**
 
-# sudo apt-get remove docker docker-engine docker.io containerd runc
+`sudo apt-get remove docker docker-engine docker.io containerd runc`
 
-# sudo apt update
+`sudo apt update`
 
-# sudo apt-get install \
+` sudo apt-get install \
     ca-certificates \
     curl \
     gnupg \
-    lsb-release
+    lsb-release`
+ `sudo mkdir -p /etc/apt/keyrings`
+ `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg`
 
-
- # sudo mkdir -p /etc/apt/keyrings
- # curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-
-
- # echo \
+`echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null`
 
 
-# sudo apt-get update
+`sudo apt-get update`
 
-# sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+`sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin`
 
 DOCKER COMPOSE INSTALLATION:
 ============================
 
-sudo curl -L "https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose
+`sudo curl -L "https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose`
 
-sudo chmod +x /usr/bin/docker-compose
+`sudo chmod +x /usr/bin/docker-compose`
 
-docker-compose --version
+`docker-compose --version`
 
 4. Here, we can do deploy in two ways
         -  we can use the same images we created in local by converting the tar file, moving the files to server and load the files it will create images. For that we need to update the compose file. For now i am not procceding with approach.
         - Move the entire sourcecode to server and rebuild it.
 
-    # docker-compose --build -d
+    `docker-compose up --build -d`
 
    4.1: Application deployed sucessfully but when accessing it from broswer were getting data fetch issue in front end application. 
     it was always redirecting to localhost:5000/stats when fetching the data but it should not be the case in cloud based servers. Because of that app server data is not fetching in front end side.
@@ -83,7 +80,7 @@ docker-compose --version
     - Updated with elastic ip which we created in that file after that its working as expected.
     the update url in App.js is http://54.84.169.149:5000/stats
 
-    server public url: ec2-54-84-169-149.compute-1.amazonaws.com
+    server public url: `ec2-54-84-169-149.compute-1.amazonaws.com`
 
 
 
