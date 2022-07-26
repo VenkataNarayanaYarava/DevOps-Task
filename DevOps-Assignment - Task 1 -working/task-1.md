@@ -21,7 +21,7 @@ You will be evaluated based on the
 
 As part of dockerize the application, we would require to create a Dockerfile for both Frontend and Backend applications. I followed the below steps.
 
-## API FOLDER
+### API FOLDER
 Step 1: Drafted the Dockerfile to build the Docker Image to make it containarize, 
 #### Dockerfile
 ---
@@ -41,8 +41,11 @@ After drafting was checking the requirements.txt and app.py files. Found that de
 #### requirements.txt
 ---
 > Flask==1.1.4
+
 > psutil==5.9.1
+
 > Flask-Cors==3.0.10
+
 > gunicorn
 ---
 
@@ -50,7 +53,7 @@ Step 3:
 
 Building the docker image api/Dockerfile
 
-'docker build -t devops-assignment_app-server:latest .'
+`docker build -t devops-assignment_app-server:latest .`
 
 **Sys-statsFolder**
 
@@ -58,12 +61,19 @@ Step 4:
 Drafted the Dockerfile to build the Docker Image to make it containarize, sys-stats/Dockerfile
 ---
 > FROM node:13.12.0-alpine
+
 > WORKDIR /app
+
 > COPY sys-stats/ /app
+
 > COPY sys-stats/package.json ./
+
 > RUN npm install
+
 > RUN npm run build
+
 > EXPOSE 3000
+
 > CMD ["npm", "start"]
 ---
 
@@ -71,7 +81,7 @@ Step 5:
 
 Building the docker image sys-stats/Dockerfile
 
-'docker build -t devops-assignment_frontend:latest .'
+`docker build -t devops-assignment_frontend:latest .`
 
 **MUTLICONTAINER DEPLOYMENT**
 
@@ -83,14 +93,14 @@ Step 6:
 
 Creating compose file for Frontend , Backend and nginx with all dependency configuration.
 
-#### docker-compose.yml in root directory
+**docker-compose.yml in root directory**
 
 
 Step 7:
 
 To build the images and containers use the below command 
 
-'docker-compose up --build -d'
+`docker-compose up --build -d`
 
 **Step 8** 
 
