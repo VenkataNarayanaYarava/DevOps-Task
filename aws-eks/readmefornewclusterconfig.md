@@ -5,7 +5,7 @@ EKS CLUSTER HOSTING:
 
 Script Path: 
 
-2. After successfull creation of EKS, need to setup the ingress controller to access our applications from the outside/external 
+2. After successfull creation of EKS, need to setup the ingress controller to access our applications from the outside/external  and ONE MORE Option we can use is AWS ELB config in eks
 
 I am going to install the nginx ingress controller in eks cluster.
 
@@ -97,4 +97,4 @@ I am going to install the nginx ingress controller in eks cluster.
        # kubectl apply -f kubernetes-deploy.yml
 	   # kubectl apply -f frontend-app.yml
 	   
-	   
+4. BY using AWS ELB external ip URL is : http://affa4c1483f8647518aaa82d3579ad72-1218257215.us-east-1.elb.amazonaws.com/ 

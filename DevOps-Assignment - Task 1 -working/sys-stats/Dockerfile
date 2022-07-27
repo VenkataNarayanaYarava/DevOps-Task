@@ -3,9 +3,9 @@ FROM node:13.12.0-alpine
 
 # set working directory
 WORKDIR /app
- COPY sys-stats/ /app
+ COPY . /app
 # # install app dependencies
-COPY sys-stats/package.json ./
+COPY package.json ./
 
 RUN npm install
 RUN npm run build

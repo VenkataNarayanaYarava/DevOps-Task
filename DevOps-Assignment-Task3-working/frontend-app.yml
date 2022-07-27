@@ -4,7 +4,6 @@ apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
   name: flask-frontend-app
-
 spec:
   selector:
     matchLabels:
@@ -17,7 +16,7 @@ spec:
     spec:
       containers:
       - name: flask-frontend-application
-        image: venkat180/devops-assignment_frontend:latest
+        image: venkat180/devops-assignment_frontend:v1.0
         ports:
         - containerPort: 3000
 
@@ -27,12 +26,35 @@ kind: Service
 apiVersion: v1
 metadata:
   name: svc-flask-frontend-app
-
 spec:
   selector:
     app: flask-frontend-app
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 80
-  type: LoadBalancer 
+  - port: 80
+    targetPort: 3000
+    protocol: TCP
+    name: http
+  type: LoadBalancer
+  externalTrafficPolicy: Local
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-flask-frontend-app
+#  annotations:
+#    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+#  ingressClassName: nginx
+  rules:
+  - host: "affa4c1483f8647518aaa82d3579ad72-1218257215.us-east-1.elb.amazonaws.com"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: svc-flask-frontend-app
+            port:
+              number: 80
+ 
